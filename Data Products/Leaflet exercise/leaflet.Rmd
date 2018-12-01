@@ -1,0 +1,21 @@
+---
+title: "Leaflet exercise"
+author: "Omer Yavin"
+date: "December 1, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(leaflet)
+```
+
+
+```{r cars}
+my_map<- leaflet() %>%
+        addTiles() %>%
+        addMarkers(lat=37.790058, lng=-122.390126, popup='Google campus')
+my_map
+```
+
+
