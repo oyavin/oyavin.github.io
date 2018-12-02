@@ -1,0 +1,27 @@
+---
+title: "plotly_exercise"
+author: "Omer Yavin"
+date: "December 2, 2018"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(plotly)
+```
+
+## Preface
+
+Working on the Practical Machine Learning course final project, I found it interesting that, while intuitively it seemed to me that classification relied heavily on the identity of the user - feature 'user_name' was not even on the 20 most important variables for modeling the Random Forest predictor.
+It then occurred to me that identity might be indirectly derived from other features.
+
+Following is a plot of 3 out of the 4 leading important variables, which shows how singling out a user might be done.
+
+## User singling by belt data
+
+```{r plot_ly, fig.dim=c(8,5),fig.align='center'}
+training<-read.csv("pml-training.csv")
+
+p <- plot_ly(training, x = ~roll_belt, y = ~pitch_belt, z = ~yaw_belt, color = ~as.factor(user_name)) %>% add_markers()
+p
+```
