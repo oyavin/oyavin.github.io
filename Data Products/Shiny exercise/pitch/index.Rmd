@@ -20,10 +20,12 @@ knit        : slidify::knit2slides
 .title-slide hgroup > h2,
 .title-slide hgroup > p {
   color: #FFFFFF;
-  padding-bottom: 1px
 }
-</style>
 
+article p, article li, article li.build, section p, section li{
+  font-size:18px;
+  color: #2D2424;
+</style>
 
 ## Data exploration
 
