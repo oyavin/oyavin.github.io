@@ -11,6 +11,19 @@ mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 ---
 
+<style>
+.title-slide {
+ background-image: url(http://www.luxurytopics.com/chest/timg/1417692874_luxury-cars-top-10-most-expensive-sport-cars-in-the-world-99.jpg) no-repeat;
+ background-size: 100%;
+}
+.title-slide hgroup > h1, 
+.title-slide hgroup > h2,
+.title-slide hgroup > p {
+  color: #FFFFFF;
+  padding-bottom: 1px
+}
+</style>
+
 
 ## Data exploration
 
@@ -33,11 +46,26 @@ The final product works thus:
 
 ## mtcars dataset
 
-The mtcars dataset was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973-74 models).
+The mtcars dataset was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles.
 
-It consists of a data frame with 32 observations on 11 variables, some of which may be treated as factors (auto\\manual gear).
+It consists of a data frame with 32 observations on 11 variables, some of which may be treated as factors.
+To "factorize"" the dataset the following piece of code is used.
 
-Using the gadget, one can easily explore the affect of various variables\\constraints on MPG capabilities.
+```r
+mtcars2 <- within(mtcars, {
+      am <- factor(am, labels = c("automatic", "manual"))
+      cyl <- as.factor(cyl)
+      gear <- as.factor(gear)
+      vs <- factor(vs, labels = c("v-shaped", "straight"))
+      carb <- as.factor(carb)
+})
+```
+To filter the dataset according to the radio button input, several lines similar to the following are used.
+
+```r
+mtcars2<-if(input$am=='X') mtcars2 else mtcars2[mtcars2$am==input$am,]
+```
+
 
 --- mtcars dataset introduced
 
@@ -60,5 +88,4 @@ print(lstFactors[1]) #print just the first factor as example
 ```
 - The gadget can also be updated to allow boxplots and 3d plots.
 
---- further work described
 

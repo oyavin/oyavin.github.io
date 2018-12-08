@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
   <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
   <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+<link rel=stylesheet href="./assets/css/title_bg.css"></link>
 
   
   <!-- Grab CDN jQuery, fall back to local if offline -->
@@ -42,11 +43,23 @@
 
     <!-- SLIDES -->
     <slide class="" id="slide-1" style="background:;">
-  <hgroup>
-    <h2>Data exploration</h2>
-  </hgroup>
   <article data-timings="">
-    <p>In data exploring, AKA exploratory data analyses, one may hope to find the nature of some inter-variable relations. The most basic tool for such explorations is the plot.</p>
+    <style>
+.title-slide {
+ background-image: url(http://www.luxurytopics.com/chest/timg/1417692874_luxury-cars-top-10-most-expensive-sport-cars-in-the-world-99.jpg) no-repeat;
+ background-size: 100%;
+}
+.title-slide hgroup > h1, 
+.title-slide hgroup > h2,
+.title-slide hgroup > p {
+  color: #FFFFFF;
+  padding-bottom: 1px
+}
+</style>
+
+<h2>Data exploration</h2>
+
+<p>In data exploring, AKA exploratory data analyses, one may hope to find the nature of some inter-variable relations. The most basic tool for such explorations is the plot.</p>
 
 <p>Creating these plots may be time consuming and deciding what to plot is not always straight forward.</p>
 
@@ -78,11 +91,24 @@ For simplicity and for time I&#39;ve created only an example of the final produc
     <h2>mtcars dataset</h2>
   </hgroup>
   <article data-timings="">
-    <p>The mtcars dataset was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973-74 models).</p>
+    <p>The mtcars dataset was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles.</p>
 
-<p>It consists of a data frame with 32 observations on 11 variables, some of which may be treated as factors (auto\manual gear).</p>
+<p>It consists of a data frame with 32 observations on 11 variables, some of which may be treated as factors.
+To &quot;factorize&quot;&quot; the dataset the following piece of code is used.</p>
 
-<p>Using the gadget, one can easily explore the affect of various variables\constraints on MPG capabilities.</p>
+<pre><code class="r">mtcars2 &lt;- within(mtcars, {
+      am &lt;- factor(am, labels = c(&quot;automatic&quot;, &quot;manual&quot;))
+      cyl &lt;- as.factor(cyl)
+      gear &lt;- as.factor(gear)
+      vs &lt;- factor(vs, labels = c(&quot;v-shaped&quot;, &quot;straight&quot;))
+      carb &lt;- as.factor(carb)
+})
+</code></pre>
+
+<p>To filter the dataset according to the radio button input, several lines similar to the following are used.</p>
+
+<pre><code class="r">mtcars2&lt;-if(input$am==&#39;X&#39;) mtcars2 else mtcars2[mtcars2$am==input$am,]
+</code></pre>
 
   </article>
   <!-- Presenter Notes -->
@@ -119,20 +145,13 @@ print(lstFactors[1]) #print just the first factor as example
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-5" style="background:;">
-  <article data-timings="">
-    
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
     <slide class="backdrop"></slide>
   </slides>
   <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='Data exploration'>
+        data-slide=1 title='NA'>
          1
       </a>
     </li>
@@ -152,12 +171,6 @@ print(lstFactors[1]) #print just the first factor as example
       <a href="#" target="_self" rel='tooltip' 
         data-slide=4 title='Further work'>
          4
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=5 title='NA'>
-         5
       </a>
     </li>
   </ul>
