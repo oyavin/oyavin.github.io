@@ -1,0 +1,57 @@
+---
+title       : Data products final project
+subtitle    : Pitching (mtcars) data exploration gadget
+author      : Omer Yavin
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+
+## Data exploration
+
+In data exploring, AKA exploratory data analyses, one may hope to find the nature of some inter-variable relations. The most basic tool for such explorations is the plot.
+
+Creating these plots may be time consuming and deciding what to plot is not always straight forward.
+
+--- data exploration issue presented
+
+## Plot gadget
+
+In this project I present a gadget for quick and simple plotting.
+For simplicity and for time I've created only an example of the final product for mtcars dataset.
+
+The final product works thus:
+- Choose values (or 'don't care') for each factor variable.
+- Choose which value to plot MPG against.
+
+--- basic example described
+
+## mtcars dataset
+
+The mtcars dataset was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973-74 models).
+
+It consists of a data frame with 32 observations on 11 variables, some of which may be treated as factors (auto\\manual gear).
+
+Using the gadget, one can easily explore the affect of various variables\\constraints on MPG capabilities.
+
+--- mtcars dataset introduced
+
+## Further work
+For later steps, I would allow the user to select a dataset, and the appropriate plot gadget would be created.
+- The variables which may be "factorized" would automatically be found (include a single-digit number of unique values) using "apply" and "unique".
+```{r apply_unique}
+lstFactors<-list()
+dfCount<-as.data.frame(as.list(apply(mtcars, 2, function(x) length(unique(x)))))
+for (var in colnames(dfCount)) {
+   if(dfCount[var]<10) lstFactors[var]<-unique(mtcars[var])
+}
+print(lstFactors[1]) #print just the first factor as example
+```
+- The gadget can also be updated to allow boxplots and 3d plots.
+
+

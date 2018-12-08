@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Data products final project</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Data products final project">
+  <meta name="author" content="Omer Yavin">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Data products final project</h1>
+    <h2>Pitching (mtcars) data exploration gadget</h2>
+    <p>Omer Yavin<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Data exploration</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>In data exploring, AKA exploratory data analyses, one may hope to find the nature of some inter-variable relations. The most basic tool for such explorations is the plot.</p>
+
+<p>Creating these plots may be time consuming and deciding what to plot is not always straight forward.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Plot gadget</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>In this project I present a gadget for quick and simple plotting.
+For simplicity and for time I&#39;ve created only an example of the final product for mtcars dataset.</p>
+
+<p>The final product works thus:</p>
+
+<ul>
+<li>Choose values (or &#39;don&#39;t care&#39;) for each factor variable.</li>
+<li>Choose which value to plot MPG against.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>mtcars dataset</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The mtcars dataset was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973-74 models).</p>
+
+<p>It consists of a data frame with 32 observations on 11 variables, some of which may be treated as factors (auto\manual gear).</p>
+
+<p>Using the gadget, one can easily explore the affect of various variables\constraints on MPG capabilities.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Further work</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>For later steps, I would allow the user to select a dataset, and the appropriate plot gadget would be created.</p>
+
+<ul>
+<li>The variables which may be &quot;factorized&quot; would automatically be found (include a single-digit number of unique values) using &quot;apply&quot; and &quot;unique&quot;.</li>
+</ul>
+
+<pre><code class="r">lstFactors&lt;-list()
+dfCount&lt;-as.data.frame(as.list(apply(mtcars, 2, function(x) length(unique(x)))))
+for (var in colnames(dfCount)) {
+   if(dfCount[var]&lt;10) lstFactors[var]&lt;-unique(mtcars[var])
+}
+print(lstFactors[1]) #print just the first factor as example
+</code></pre>
+
+<pre><code>## $cyl
+## [1] 6 4 8
+</code></pre>
+
+<ul>
+<li>The gadget can also be updated to allow boxplots and 3d plots.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Data exploration'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Plot gadget'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='mtcars dataset'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Further work'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='NA'>
+         5
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
