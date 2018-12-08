@@ -36,9 +36,28 @@ shinyServer(function(input, output) {
     y <- mtcars2[,'mpg']
     
     # draw the plot and add a regression line
-    p<-ggplot(mtcars2,aes(x,y))+geom_point()+geom_smooth(method='lm')+xlab(x)+ylab('mpg')
+    p<-ggplot(mtcars2,aes(x,y))+geom_point()+geom_smooth(method='lm')+xlab(input$x)+ylab('mpg')
     p
     
+  })
+  
+  output$mdl <- renderPrint({
+    # filter according to selected constraints
+    mtcars2<-if(input$am=='X') mtcars2 else mtcars2[mtcars2$am==input$am,]
+    mtcars2<-if(input$cyl=='X') mtcars2 else mtcars2[mtcars2$cyl==input$cyl,]
+    mtcars2<-if(input$vs=='X') mtcars2 else mtcars2[mtcars2$vs==input$vs,]
+    mtcars2<-if(input$gear=='X') mtcars2 else mtcars2[mtcars2$gear==input$gear,]
+    mtcars2<-if(input$carb=='X') mtcars2 else mtcars2[mtcars2$carb==input$carb,]
+    
+    
+    # create an x according to selection
+    x <- mtcars2[,input$x]
+    y <- mtcars2[,'mpg']
+    
+    mdl<-lm(y~x)
+    #txtMdl<-paste('mpg=',round(mdl$coefficients[2],2),'*',input$x,round(mdl$coefficients[1],2))
+    #txtMdl
+    summary(mdl)
   })
   
 })

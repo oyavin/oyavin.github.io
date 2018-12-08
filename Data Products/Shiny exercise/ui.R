@@ -20,7 +20,7 @@ shinyUI(fluidPage(
   sidebarLayout(
     sidebarPanel(
       selectInput(inputId='x', label='Select what to plot agaist mpg', choices=c('disp','hp','drat','wt','qsec')),
-      radioButtons(inputId='am', label='Select manual\auto', choices=c('automatic','manual','X'), selected='X'),
+      radioButtons(inputId='am', label='Select manual\\auto', choices=c('automatic','manual','X'), selected='X'),
       radioButtons(inputId='cyl', label='Select # of cylinders', choices=c('4','6','8','X'), selected='X'),
       radioButtons(inputId='vs', label='Select engine shape', choices=c('v-shaped','straight','X'), selected='X'),
       radioButtons(inputId='gear', label='Select # of forward gears', choices=c('3','4','5','X'), selected='X'),
@@ -29,7 +29,8 @@ shinyUI(fluidPage(
     
     # Show a plot of the generated distribution
     mainPanel(
-       plotOutput("plot")
+       plotOutput("plot"),
+       verbatimTextOutput("mdl")
     )
   )
 ))
